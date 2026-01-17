@@ -818,3 +818,38 @@ footer p {
         border: 1px solid #ccc;
     }
 }
+/* Agrega esto al final de style.css */
+
+/* Ocultar el botón "Cotizar" de la lista en escritorio */
+.nav-links .btn-cta-nav-mobile {
+    display: none;
+}
+
+/* En escritorio, ocultamos el botón que pusimos dentro de la lista */
+@media (min-width: 768px) {
+    .btn-cta-nav.desktop-only {
+        display: inline-flex;
+    }
+}
+
+/* En móvil: Ocultar el botón del header y mostrar el de la lista */
+@media (max-width: 767px) {
+    .btn-cta-nav.desktop-only {
+        display: none;
+    }
+
+    .nav-links .btn-cta-nav-mobile {
+        display: inline-block; /* O inline-flex */
+        border: 2px solid var(--primary-blue);
+        color: var(--primary-blue);
+        padding: 10px 20px;
+        margin-top: 15px;
+        border-radius: 4px;
+        text-align: center;
+    }
+    
+    /* Aseguramos que el botón hamburguesa se vea */
+    .menu-toggle {
+        display: flex; /* Tu CSS original ya tenía esto, pero asegúrate */
+    }
+}
