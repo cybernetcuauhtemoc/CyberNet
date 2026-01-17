@@ -35,6 +35,9 @@ body {
     padding: 60px 5%;
 }
 .contenedor-imagen {
+    display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;   
   text-align: center;
 }
 .contenedor-imagen img {
