@@ -35,13 +35,10 @@ body {
     padding: 60px 5%;
 }
 .contenedor-imagen {
-  display: grid;
-  place-items: center; /* Centra horizontal y verticalmente */
-  height: 200px; /* Altura necesaria para centrado vertical */
-  
+  text-align: center;
 }
 .contenedor-imagen img {
-  max-width: 10%;
+  max-width: 20%;
   height: auto;
 }
 /* Ajuste de padding para secciones en diferentes dispositivos */
