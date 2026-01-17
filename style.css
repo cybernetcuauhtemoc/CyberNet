@@ -37,11 +37,11 @@ body {
 .contenedor-imagen {
   display: grid;
   place-items: center; /* Centra horizontal y verticalmente */
-  height: 400px; /* Altura necesaria para centrado vertical */
-  border: 1px solid #ccc;
+  height: 100px; /* Altura necesaria para centrado vertical */
+  
 }
 .contenedor-imagen img {
-  max-width: 100%;
+  max-width: 20%;
   height: auto;
 }
 /* Ajuste de padding para secciones en diferentes dispositivos */
