@@ -10,7 +10,7 @@ if(contactForm) {
         const phone = document.getElementById('phone').value;
         const message = document.getElementById('message').value;
 
-        const MY_PHONE_NUMBER = "5216251234567"; // Tu número aquí
+        const MY_PHONE_NUMBER = "5216291012012"; // Tu número aquí
 
         // 2. Estructurar el mensaje
         const text = `*¡Nueva Solicitud de Diagnóstico!* 🛡️%0A%0A` +
