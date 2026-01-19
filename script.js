@@ -1,70 +1,44 @@
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. Efecto de Header al hacer Scroll
-    const header = document.getElementById('main-header');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+// 2. Manejo del Formulario de Contacto (WhatsApp)
+const contactForm = document.getElementById('contactForm');
+if(contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // 1. Obtener valores de los inputs
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const message = document.getElementById('message').value;
+
+        // 2. Configurar tu número de WhatsApp (USA FORMATO INTERNACIONAL SIN EL +)
+        // Ejemplo: 5216251234567 (52 para México, 1, luego el número a 10 dígitos)
+        const MY_PHONE_NUMBER = "5216291012012"; 
+
+        // 3. Estructurar el mensaje para que se vea profesional
+        const text = `*¡Nueva Solicitud de Diagnóstico!* 🛡️%0A%0A` +
+                     `*Nombre:* ${name}%0A` +
+                     `*Correo:* ${email}%0A` +
+                     `*Teléfono:* ${phone}%0A` +
+                     `*Proyecto:* ${message}`;
+
+        // 4. Crear la URL de WhatsApp
+        const whatsappUrl = `https://wa.me/${MY_PHONE_NUMBER}?text=${text}`;
+
+        // 5. Animación visual en el botón antes de redirigir
+        const submitBtn = contactForm.querySelector('.btn-submit');
+        const originalText = submitBtn.innerHTML;
+        
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generando WhatsApp...';
+        submitBtn.style.background = 'linear-gradient(45deg, #25D366, #128C7E)'; // Color WhatsApp
+
+        setTimeout(() => {
+            // Abrir WhatsApp en una nueva pestaña
+            window.open(whatsappUrl, '_blank');
+            
+            // Resetear formulario
+            contactForm.reset();
+            submitBtn.innerHTML = originalText;
+            submitBtn.removeAttribute('style');
+        }, 1500);
     });
-const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    const navLinksItems = document.querySelectorAll('.nav-links a');
-
-    if (menuToggle && navLinks) {
-        // 1. Abrir / Cerrar menú al tocar el botón hamburguesa
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        // 2. Cerrar el menú automáticamente al hacer clic en un enlace
-        navLinksItems.forEach(item => {
-            item.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-    }
-    // 2. Manejo del Formulario de Contacto
-    const contactForm = document.getElementById('contactForm');
-    if(contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            // Obtener valores
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-
-            // Aquí iría la lógica real de envío (ej. fetch a un backend)
-            
-            // Simulación de éxito con un estilo más "tech"
-            const submitBtn = contactForm.querySelector('.btn-submit');
-            const originalText = submitBtn.innerHTML;
-            
-            submitBtn.innerHTML = '<i class="fas fa-check"></i> Enviado con Éxito';
-            submitBtn.style.background = 'linear-gradient(45deg, #00b09b, #96c93d)'; // Verde éxito
-
-            setTimeout(() => {
-                contactForm.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.removeAttribute('style'); // Regresar al estilo original
-                alert(`Gracias ${name}. Nuestros ingenieros revisarán tu solicitud.`);
-            }, 3000);
-        });
-    }
-
-    // 3. Inicialización de Vanilla Tilt (Efecto 3D en tarjetas)
-    // Verifica si la librería se cargó correctamente
-    if (typeof VanillaTilt !== 'undefined') {
-        VanillaTilt.init(document.querySelectorAll(".service-card"), {
-            max: 15,           // Inclinación máxima
-            speed: 400,        // Velocidad del efecto
-            glare: true,       // Añade un destello de luz
-            "max-glare": 0.2   // Opacidad del destello
-        });
-    }
-});
+}
